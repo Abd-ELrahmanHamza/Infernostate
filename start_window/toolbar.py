@@ -1,7 +1,8 @@
 import tkinter as tk
 
+
 class file_subMenu:
-    def __init__(self,menu):
+    def __init__(self, menu):
         fileSubMenu = tk.Menu(menu)
         menu.add_cascade(label="file", menu=fileSubMenu)
 
@@ -24,8 +25,10 @@ class help_subMenu:
 
     def help_helpCommand(self):
         print("help -> help")
+
+
 class toolbar:
-    def __init__(self,root):
+    def __init__(self, root):
         menu = tk.Menu(root)
         root.config(menu=menu)
         file_subMenu(menu)
