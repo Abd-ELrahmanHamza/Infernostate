@@ -1,7 +1,12 @@
-import sys
-sys.path.append('inferential_window')
+try :
+    from inferential_window.inferential_window import run
+except:
+    import sys
+    sys.path.append('inferential_window')
+    from inferential_window import run
+
 import tkinter as tk
-from inferential_window import run
+
 
 
 class inferentialBtn:

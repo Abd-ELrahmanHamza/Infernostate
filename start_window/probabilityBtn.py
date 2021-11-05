@@ -1,7 +1,12 @@
-import sys
-sys.path.append('probability_window')
+try :
+    from probability_window.probability_window import run
+except:
+    import sys
+    sys.path.append('probability_window')
+    from probability_window import run
+
 import tkinter as tk
-from probability_window import run
+
 
 
 class probabilityBtn:

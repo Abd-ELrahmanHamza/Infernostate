@@ -1,7 +1,12 @@
-import sys
-sys.path.append('center_window')
+try :
+    from center_window.center_window import run
+except:
+    import sys
+    sys.path.append('center_window')
+    from center_window import run
+
 import tkinter as tk
-from center_window import run
+
 
 
 class centerBtn:
