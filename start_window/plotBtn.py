@@ -1,5 +1,7 @@
+import sys
+sys.path.append('plot_window')
 import tkinter as tk
-from plot_window.plot_window import run
+from plot_window import run
 
 
 class plotBtn:
