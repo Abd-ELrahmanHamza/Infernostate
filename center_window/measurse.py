@@ -5,7 +5,7 @@ import statistics as stats
 from statistics import *
 import pandas as pd
 
-df=pd.read_csv("dataframe.csv")
+df=pd.read_csv("center_window/dataframe.csv")
 
 def buttonmodefunc():
     c=stats.mode(df["data"])
