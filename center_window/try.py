@@ -4,6 +4,8 @@ import numpy as np
 import statistics as stats
 from statistics import *
 import pandas as pd
+from pandas.core.indexes import base
+from tkinter import ttk
 
 
 root =tk.Tk()
@@ -16,20 +18,48 @@ root.config(bg="#84e9d9")
 
 
 
-df=pd.read_csv("dataframe.csv")
+df=pd.read_csv("center_window/dataframe.csv")
 
 
 def selected():
     mylabel=Label(root,text=clicked.get()).pack()
 
+listroom=StringVar(root)
 lists=df.columns
-clicked=StringVar(root)
+clicked=StringVar()
 clicked.set("select the column")
-men=OptionMenu(root,clicked,*lists)
+print(clicked.get())
+men=OptionMenu(root,clicked,*lists,command=selected)
 men.place(x=900,y=100,width=300)
+selection=clicked.get()
 
 
 
+list2={"mode","median","mean","Standard Deviation","variance"}
+clicked2=StringVar()
+clicked2.set("select the operation")
+men2=OptionMenu(root,clicked2,*list2)
+men2.place(x=900,y=400,width=300)
+selection2=clicked2.get()
+
+list3=["mode","median","mean","Standard Deviation","variance"]
+men3=ttk.Combobox(root,values=list3,width=10)
+#men3.grid(row=1,column=0)
+men3.place(x=900,y=400)
+men3.pack()
+
+mylist=df.columns
+options=tk.StringVar(root)
+ll=tk.Label(root,text="select the column")
+#ll.grid(row=1,column=0)
+ll.place(x=500,y=500)
+
+om1=tk.OptionMenu(root,options,*mylist)
+#om1.grid(row=3,column=4)
+om1.place(x=640,y=500,width=400)
+print(options.get())
+
+print(selection)
 def buttonmodefunc():
     c=stats.mode(df["data"])
     lab1=Label(text="mode=",bg="white",fg="black",width="10",height="2")
@@ -90,6 +120,5 @@ b5=Button(root,text="press to calc Standard Deviation",command=buttonpvariancefu
 b5.config(font=("Helvetica",15,"bold"))
 b5.place(x=150,y=630)
 
-print(clicked.get())
 
 root.mainloop()
