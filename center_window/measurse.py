@@ -1,10 +1,11 @@
+from io import BufferedRandom
 import tkinter as tk
 from tkinter import *
 import numpy as np
 import statistics as stats
 from statistics import *
 import pandas as pd
-
+from tkinter import ttk
 
 root =tk.Tk()
 width= root.winfo_screenwidth()
@@ -16,80 +17,80 @@ root.config(bg="#84e9d9")
 
 
 
-df=pd.read_csv("dataframe.csv")
-
-
-def selected():
-    mylabel=Label(root,text=clicked.get()).pack()
+df=pd.read_csv("cardio_train.csv")
 
 lists=df.columns
-clicked=StringVar(root)
-clicked.set("select the column")
-men=OptionMenu(root,clicked,*lists)
-men.place(x=900,y=100,width=300)
+opts=StringVar(root)
+opts.set("select the column")
+men=OptionMenu(root,opts,*lists)
+men.place(x=350,y=80,width=500)
 
-
-
+def select(men):
+    data=opts.get()
+    return data
+button=Button(root,text="click to get the selection value",command=lambda:select(men))
+button.place(x=860,y=80)
+data=select
 def buttonmodefunc():
-    c=stats.mode(df["data"])
+    c=stats.mode(df[data])
     lab1=Label(text="mode=",bg="white",fg="black",width="10",height="2")
-    lab1.place(x=600,y=30)
-    l1=Label(text=c,bg="white",fg="black",width="100",height="2")
-    l1.place(x=670,y=30)
+    lab1.place(x=650,y=150)
+    l1=Label(text=c,bg="white",fg="black",width="20",height="2")
+    l1.place(x=720,y=150)
 
 
 def buttonmedianfunc():
-    c=stats.median(df["data"])
+    c=stats.median(df[data])
     lab2=Label(text="median=",bg="white",fg="black",width="10",height="2")
-    lab2.place(x=600,y=180)
-    l2=Label(text=c,bg="white",fg="black",width="100",height="2")
-    l2.place(x=670,y=180)
+    lab2.place(x=650,y=270)
+    l2=Label(text=c,bg="white",fg="black",width="20",height="2")
+    l2.place(x=720,y=270)
 
 
 def buttonmeanfunc():
-    c=stats.mean(df["data"])
+    c=stats.mean(df[data])
     lab3=Label(text="mean=",bg="white",fg="black",width="10",height="2")
-    lab3.place(x=600,y=330)
-    l3=Label(text=c,bg="white",fg="black",width="100",height="2")
-    l3.place(x=670,y=330)
+    lab3.place(x=650,y=390)
+    l3=Label(text=c,bg="white",fg="black",width="20",height="2")
+    l3.place(x=720,y=390)
 
 def buttonvariancefunc():
-    c=stats.variance(df["data"])
-    lab1=Label(text="Standard Deviation=",bg="white",fg="black",width="20",height="2")
-    lab1.place(x=600,y=480)
-    l1=Label(text=c,bg="white",fg="black",width="100",height="2")
-    l1.place(x=740,y=480)
+    c=stats.variance(df[data])
+    lab1=Label(text="variance=",bg="white",fg="black",width="20",height="2")
+    lab1.place(x=650,y=510)
+    l1=Label(text=c,bg="white",fg="black",width="20",height="2")
+    l1.place(x=750,y=510)
 
 def buttonpvariancefunc():
-    c=stats.pvariance(df["data"])
-    lab1=Label(text="variance=",bg="white",fg="black",width="10",height="2")
-    lab1.place(x=600,y=630)
-    l1=Label(text=c,bg="white",fg="black",width="100",height="2")
-    l1.place(x=670,y=630)    
+    c=stats.pvariance(df[data])
+    lab1=Label(text="Stand. Dev.=",bg="white",fg="black",width="20",height="2")
+    lab1.place(x=650,y=630)
+    l1=Label(text=c,bg="white",fg="black",width="20",height="2")
+    l1.place(x=760,y=630)    
 
 
 
 
 b1=Button(root,text="press to calc mode",command=buttonmodefunc)
 b1.config(font=("Helvetica",15,"bold"))
-b1.place(x=150,y=30)
+b1.place(x=360,y=150)
 
 b2=Button(root,text="press to calc median",command=buttonmedianfunc)
 b2.config(font=("Helvetica",15,"bold"))
-b2.place(x=150,y=180)
+b2.place(x=360,y=270)
 
 b3=Button(root,text="press to calc mean",command=buttonmeanfunc)
 b3.config(font=("IHelvetica",15,"bold"))
-b3.place(x=150,y=330)
+b3.place(x=360,y=390)
 
 b4=Button(root,text="press to calc variance",command=buttonvariancefunc)
 b4.config(font=("Helvetica",15,"bold"))
-b4.place(x=150,y=480)
+b4.place(x=360,y=510)
 
-b5=Button(root,text="press to calc Standard Deviation",command=buttonpvariancefunc)
+b5=Button(root,text="press to calc Stand. Dev.",command=buttonpvariancefunc)
 b5.config(font=("Helvetica",15,"bold"))
-b5.place(x=150,y=630)
+b5.place(x=360,y=630)
 
-print(clicked.get())
+
 
 root.mainloop()
