@@ -35,7 +35,7 @@ class fileButton:
 
     def read_file(self):
         if self.__filename != "":
-            self.dataFrame = pandas.read_csv(self.__filename)
+            self.dataFrame = pandas.read_csv(self.__filename,sep=';')
             frameBtns = tk.Frame(self.__root,bg="#84e9d9")
             frameBtns.pack(pady=30)
             pltBtn = plotBtn(frameBtns,self.__font,self.dataFrame)
