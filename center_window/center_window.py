@@ -32,8 +32,8 @@ def run(dataFrame):
     def select(men):
         data=opts.get()
         return data
-    button=Button(root,text="click to get the selection value",command=lambda:select(men))
-    button.place(x=860,y=80)
+    # button=Button(root,text="click to get the selection value",command=lambda:select(men))
+    # button.place(x=860,y=80)
     data=select
     def buttonmodefunc():
         c=stats.mode(df[data])
