@@ -4,6 +4,7 @@ import numpy as np
 import statistics as stats
 from statistics import *
 import pandas as pd
+from tkinter  import messagebox,Tk
 def run(dataFrame):
     root = tk.Tk()
     root.title("Infernostate")
@@ -22,7 +23,6 @@ def run(dataFrame):
     print(dataFrame)
     df=dataFrame
 
-
     lists=df.columns
     opts=StringVar(root)
     opts.set("select the column")
@@ -31,9 +31,13 @@ def run(dataFrame):
 
     def select(men):
         data=opts.get()
+        if(df[opts.get()].dtypes==object):
+           tk.messagebox.showinfo(
+           title='not valid data',
+           message= "invalid data please select valid data"
+           )  
+           return
         return data
-    # button=Button(root,text="click to get the selection value",command=lambda:select(men))
-    # button.place(x=860,y=80)
     data=select
     def buttonmodefunc():
         c=stats.mode(df[data])
@@ -60,17 +64,17 @@ def run(dataFrame):
 
     def buttonvariancefunc():
         c=stats.variance(df[data])
-        lab1=Label(root,text="variance=",bg="white",fg="black",width="20",height="2")
-        lab1.place(x=650,y=510)
-        l1=Label(root,text=c,bg="white",fg="black",width="20",height="2")
-        l1.place(x=750,y=510)
+        lab4=Label(root,text="variance=",bg="white",fg="black",width="20",height="2")
+        lab4.place(x=650,y=510)
+        l4=Label(root,text=c,bg="white",fg="black",width="20",height="2")
+        l4.place(x=750,y=510)
 
     def buttonpvariancefunc():
         c=stats.pvariance(df[data])
-        lab1=Label(root,text="Stand. Dev.=",bg="white",fg="black",width="20",height="2")
-        lab1.place(x=650,y=630)
-        l1=Label(root,text=c,bg="white",fg="black",width="20",height="2")
-        l1.place(x=760,y=630)    
+        lab5=Label(root,text="Stand. Dev.=",bg="white",fg="black",width="20",height="2")
+        lab5.place(x=650,y=630)
+        l5=Label(root,text=c,bg="white",fg="black",width="20",height="2")
+        l5.place(x=760,y=630)    
 
 
 
