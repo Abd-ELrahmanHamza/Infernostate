@@ -1,10 +1,19 @@
 import tkinter as tk
 from tkinter import *
+from tkinter import ttk
 import numpy as np
 import statistics as stats
 from statistics import *
 import pandas as pd
 from tkinter  import messagebox,Tk
+
+class title:
+    def __init__(self, root, font):
+        topFrame = tk.Frame(root)
+        topFrame.pack(side=tk.TOP, pady=20)
+        label = tk.Label(topFrame, text="Measure Of Center", font=font + (40, "italic"), fg="#4b50b0", bg="#84e9d9")
+        label.pack()
+
 def run(dataFrame):
     root = tk.Tk()
     root.title("Infernostate")
@@ -16,18 +25,27 @@ def run(dataFrame):
     width= root.winfo_screenwidth()
     height= root.winfo_screenheight()
     root.title("measures of center")
+    font = ("Helvetica",)
+    root.option_add('*TCombobox*Listbox.font', font+(15,)) # apply font to combobox
     root.config(bg="#84e9d9")
+    # title(root,font)
     # your code here
-    lbl = tk.Label(root,text = "center")
-    lbl.pack()
-    print(dataFrame)
-    df=dataFrame
+    
 
+    # print(dataFrame)
+    df=dataFrame
     lists=df.columns
+    
+    frameOptions = tk.Frame(root, bg="#84e9d9")
+    frameOptions.pack(pady=10)
     opts=StringVar(root)
-    opts.set("select the column")
-    men=OptionMenu(root,opts,*lists)
+    opts.set("Select the Column")
+    lists = lists.tolist()
+    men=ttk.Combobox(root,width=30, justify='center', height=len(lists),textvariable=opts,values=lists ,font=font+(16,))
     men.place(x=350,y=80,width=500)
+    men.option_add('*TCombobox*Listbox.Justify', 'center')
+
+
 
     def select(men):
         data=opts.get()
@@ -77,8 +95,10 @@ def run(dataFrame):
         l5.place(x=760,y=630)    
 
 
-
-
+    # frameBtns1 = tk.Frame(root, bg="#84e9d9")
+    # frameBtns1.pack(pady=0)
+    # button = tk.Button(frameBtns1, text='press to calc mode', command=buttonmodefunc, font=font + (20,), bg="#4b50b0",fg="#efefef",width = 10)
+    # button.pack(side=tk.LEFT,padx = 10,pady = 300)
     b1=Button(root,text="press to calc mode",command=buttonmodefunc)
     b1.config(font=("Helvetica",15,"bold"))
     b1.place(x=360,y=150)
