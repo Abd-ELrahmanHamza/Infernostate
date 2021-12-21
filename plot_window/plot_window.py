@@ -12,6 +12,17 @@ from numpy.lib.function_base import place
 options = ['Bar Char', 'Histogram', 'Dot Digram',
            'Box plot', 'Stem-and-leaf Plot']
 
+class HistogramBtn:
+    def __init__(self, frame, font,dataFrame):
+        self.dataFrame = dataFrame
+        button = tk.Button(frame, text='Histogram', command=self.plot, font=font + (20,), bg="#4b50b0",
+                           fg="#efefef",width = 10)
+        button.pack(side=tk.LEFT,padx = 10)
+
+    def plot(self):
+        print("hssdas")
+        # self.dataFrame.values.tolist()
+        pass
 
 def run(dataFrame):
     root = tk.Tk()
@@ -21,6 +32,14 @@ def run(dataFrame):
     height = root.winfo_screenheight()
     root.geometry("%dx%d" % (width, height))
     root.state('zoomed')
+
+    font = ("Helvetica",)
+
+    frameBtns = tk.Frame(root, bg="#84e9d9")
+    frameBtns.pack(pady=30)
+
+    pltBtn = HistogramBtn(frameBtns, font, dataFrame)
+    # Btn2 = HistogramBtn(frameBtns, font, dataFrame)
 
     def showComb():
         n = tk.StringVar()
@@ -67,5 +86,5 @@ def run(dataFrame):
                     command=menu).place(relx=0.5, rely=0.4, anchor=CENTER)
     lbl = tk.Label(root, text="plot")
     lbl.pack()
-    print(dataFrame.values.tolist())
+    # print(dataFrame.values.tolist())
     root.mainloop()
