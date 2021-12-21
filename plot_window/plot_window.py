@@ -8,8 +8,7 @@ from statistics import *
 import pandas as pd
 from tkinter  import messagebox,Tk
 options = ['Bar Char', 'Histogram', 'Dot Digram',
-           'Box plot', 'Stem-and-leaf Plot']
-
+           'Box plot', 'Stem-and-leaf Plot','viloent']
 
 class HistogramBtn:
     def __init__(self, frame, font,dataFrame,menu1):
@@ -20,7 +19,14 @@ class HistogramBtn:
         button.pack(side=tk.LEFT,padx = 10,pady = 300)
 
     def plot(self):
+        plt.close("all")
         plt.hist(self.dataFrame[self.menu1.get()],color = 'maroon')
+        # var1=plt.figure(1)
+        # var1.canvas.set_window_title('Histogram')
+        plt.get_current_fig_manager().canvas.set_window_title('Histogram')
+        plt.title(self.menu1.get().capitalize())
+        plt.xlabel('Values')
+        plt.ylabel('Frequency')
         plt.show()
         pass
 
@@ -34,7 +40,14 @@ class BarGraphBtn:
         button.pack(side=tk.LEFT,padx = 10,pady = 300)
 
     def plot(self):
+        plt.close("all")
         plt.hist(self.dataFrame[self.menu1.get()],color = 'maroon',rwidth=0.5)
+        # var2=plt.figure(1)
+        # var2.canvas.set_window_title('Bar Chart')
+        plt.get_current_fig_manager().canvas.set_window_title('Bar Chart')
+        plt.title(self.menu1.get().capitalize())
+        plt.xlabel('Values')
+        plt.ylabel('Frequency')
         plt.show()
         pass
 
@@ -49,7 +62,11 @@ class BoxPlotGraphBtn:
         button.pack(side=tk.LEFT,padx = 10,pady = 300)
 
     def plot(self):
+        plt.close("all")
         plt.boxplot(self.dataFrame[self.menu1.get()])
+        # var3=plt.figure(1)
+        # var3.canvas.set_window_title('Box Plot')
+        plt.get_current_fig_manager().canvas.set_window_title('Box Plot')
         plt.show()
         pass
 
@@ -63,11 +80,32 @@ class PieGraphBtn:
         button.pack(side=tk.LEFT,padx = 10,pady = 300)
 
     def plot(self):
+        plt.close("all")
         colors = plt.get_cmap('Blues')(np.linspace(0.2, 0.7))
-        plt.boxplot(self.dataFrame[self.menu1.get()])
+        # self.dataFrame=self.dataFrame[self.menu1.get()].tolist()
+        # plt.pie(self.dataFrame[self.menu1.get()][1:500], frame=True)
+        plt.get_current_fig_manager().canvas.set_window_title('Pie Chart')
+        if(len(self.dataFrame)>500):
+            plt.pie(self.dataFrame[self.menu1.get()][1:500], frame=True)
+        else:
+            plt.pie(self.dataFrame[self.menu1.get()], frame=True)
         plt.show()
         pass
+    
+class violinPlotnBtn:
+    def __init__(self, frame, font,dataFrame,menu1):
+        self.dataFrame = dataFrame
+        self.menu1=menu1
+        button = tk.Button(frame, text='Violin Plot', command=self.plot, font=font + (20,), bg="#4b50b0",
+                           fg="#efefef",width = 10)
+        button.pack(side=tk.LEFT,padx = 10,pady = 300)
 
+    def plot(self):
+        plt.close("all")
+        plt.violinplot(self.dataFrame[self.menu1.get()])
+        plt.get_current_fig_manager().canvas.set_window_title('Violin Plot')
+        plt.show()
+        pass
 
 
 def run(dataFrame):
@@ -104,6 +142,7 @@ def run(dataFrame):
     pltBtnBar = BarGraphBtn(frameBtns, font, dataFrame,men)
     pltBtnBoxPlot = BoxPlotGraphBtn(frameBtns, font, dataFrame,men)
     pltBtnpie = PieGraphBtn(frameBtns, font, dataFrame,men)
+    pltBtnViolin = violinPlotnBtn(frameBtns, font, dataFrame,men)
     
     # def showComb():
     #     n = tk.StringVar()
