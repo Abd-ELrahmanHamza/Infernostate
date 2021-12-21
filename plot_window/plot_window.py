@@ -10,6 +10,14 @@ from tkinter  import messagebox,Tk
 options = ['Bar Char', 'Histogram', 'Dot Digram',
            'Box plot', 'Stem-and-leaf Plot','viloent']
 
+#title of the window
+class title:
+    def __init__(self, root, font):
+        topFrame = tk.Frame(root)
+        topFrame.pack(side=tk.TOP, pady=20)
+        label = tk.Label(topFrame, text="Ploting", font=font + (40, "italic"), fg="#4b50b0", bg="#84e9d9")
+        label.pack()
+
 class HistogramBtn:
     def __init__(self, frame, font,dataFrame,menu1):
         self.dataFrame = dataFrame
@@ -67,6 +75,7 @@ class BoxPlotGraphBtn:
         # var3=plt.figure(1)
         # var3.canvas.set_window_title('Box Plot')
         plt.get_current_fig_manager().canvas.set_window_title('Box Plot')
+        plt.title(self.menu1.get().capitalize())
         plt.show()
         pass
 
@@ -85,6 +94,7 @@ class PieGraphBtn:
         # self.dataFrame=self.dataFrame[self.menu1.get()].tolist()
         # plt.pie(self.dataFrame[self.menu1.get()][1:500], frame=True)
         plt.get_current_fig_manager().canvas.set_window_title('Pie Chart')
+        plt.title(self.menu1.get().capitalize())
         if(len(self.dataFrame)>500):
             plt.pie(self.dataFrame[self.menu1.get()][1:500], frame=True)
         else:
@@ -104,6 +114,7 @@ class violinPlotnBtn:
         plt.close("all")
         plt.violinplot(self.dataFrame[self.menu1.get()])
         plt.get_current_fig_manager().canvas.set_window_title('Violin Plot')
+        plt.title(self.menu1.get().capitalize())
         plt.show()
         pass
 
@@ -116,8 +127,9 @@ def run(dataFrame):
     height = root.winfo_screenheight()
     root.geometry("%dx%d" % (width, height))
     root.state('zoomed')
-
     font = ("Helvetica",)
+    root.option_add('*TCombobox*Listbox.font', font+(15,)) # apply font to combobox
+    title(root,font)
 
     # get the columns name from the file
     lists = dataFrame.columns
@@ -126,15 +138,17 @@ def run(dataFrame):
     
     # Frame for option menu
     frameOptions = tk.Frame(root, bg="#84e9d9")
-    frameOptions.pack(pady=20)
+    frameOptions.pack(pady=0)
 
     frameBtns = tk.Frame(root, bg="#84e9d9")
-    frameBtns.pack(pady=50)
+    frameBtns.pack(pady=0)
     
     opts=StringVar(frameOptions)
-    opts.set("select the column")
+    opts.set("Select the Column")
     # root, width=27, height=3, textvariable=n, values=options
-    men=ttk.Combobox(frameOptions, width=30, height=len(lists),textvariable=opts,values=lists)
+    # text_font = ('Courier New', '10')
+    men=ttk.Combobox(frameOptions, width=30, justify='center', height=len(lists),textvariable=opts,values=lists ,font=font+(16,))
+    men.option_add('*TCombobox*Listbox.Justify', 'center')
     men.place(x=350,y=80,width=250)
     men.pack()
     name = men.get()
