@@ -89,7 +89,7 @@ def run(dataFrame):
         if(opts.get() == 'Select the Column'):
             l5.config(text = 'Select a Column')
         else:
-            c=stats.pvariance(df[data])
+            c=stats.stdev(df[data])
             l5.config(text = c) 
 
 
