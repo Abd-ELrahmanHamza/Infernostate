@@ -10,6 +10,10 @@ import matplotlib.pyplot as plt
 pmfValueN = 0
 pmfValueP = 0
 pmfValueX = 0
+
+cdfValueN = 0
+cdfValueP = 0
+cdfValueX = 0
 class title:
     def __init__(self, root, font):
         topFrame = tk.Frame(root)
@@ -24,7 +28,7 @@ class pmfBtn:
         self.txtPmfP = txtPmfP
         self.txtPmfX = txtPmfX
         self.labelPmf = labelPmf
-        button = tk.Button(frame, text='pmf', command=self.calculate, font=font + (20,), bg="#4b50b0",
+        button = tk.Button(frame, text='PMF', command=self.calculate, font=font + (20,), bg="#4b50b0",
                            fg="#efefef", width=10)
         button.pack(side=tk.LEFT, padx=10)
 
@@ -81,6 +85,67 @@ class pmfTextBoxX:
 
 
 
+class cdfBtn:
+    def __init__(self, frame, font,txtCdfN,txtCdfP,txtCdfX,labelCdf):
+        self.txtCdfN = txtCdfN
+        self.txtCdfP = txtCdfP
+        self.txtCdfX = txtCdfX
+        self.labelCdf = labelCdf
+        button = tk.Button(frame, text='CDF', command=self.calculate, font=font + (20,), bg="#4b50b0",
+                           fg="#efefef", width=10)
+        button.pack(side=tk.LEFT, padx=10)
+
+    def calculate(self):
+        global cdfValueX
+        global cdfValueP
+        global cdfValueN
+        cdfValueN = self.txtCdfN.getParameter().get('1.0', 'end')
+        cdfValueP = self.txtCdfP.getParameter().get('1.0', 'end')
+        cdfValueX = self.txtCdfX.getParameter().get('1.0', 'end')
+        try:
+            cdfValueX = float(cdfValueX)
+            cdfValueP = float(cdfValueP)
+            cdfValueN = float(cdfValueN)
+        except:
+            cdfValueN = 0
+            cdfValueP = 0
+            cdfValueX = 0
+            print("Hello")
+        # pmfValueP = int(pmfValueP)
+        # pmfValueP = int(pmfValueP)
+        print(cdfValueN,cdfValueP,cdfValueX)
+        X = stats.binom(cdfValueN, cdfValueP)  # Declare X to be a binomial random variable
+        self.labelCdf.config(text = "CDF = "+str(X.cdf(cdfValueX)))
+        # print(X.cdf(pmfValueX))
+
+
+
+class cdfTextBoxN:
+    def __init__(self, frame, font):
+        label = tk.Label(frame, text="N", font=font + (16, "italic"), fg="#4b50b0", bg="#84e9d9")
+        label.pack(side=tk.LEFT, padx=10)
+        self.T = tk.Text(frame, height=2, width=15,font=font)
+        self.T.pack(side=tk.LEFT, padx=10)
+
+    def getParameter(self):
+        return self.T
+class cdfTextBoxP:
+    def __init__(self, frame, font):
+        label = tk.Label(frame, text="P", font=font + (16, "italic"), fg="#4b50b0", bg="#84e9d9")
+        label.pack(side=tk.LEFT, padx=10)
+        self.T = tk.Text(frame, height=2, width=15,font=font)
+        self.T.pack(side=tk.LEFT, padx=10)
+    def getParameter(self):
+        return self.T
+class cdfTextBoxX:
+    def __init__(self, frame, font):
+        label = tk.Label(frame, text="X", font=font + (16, "italic"), fg="#4b50b0", bg="#84e9d9")
+        label.pack(side=tk.LEFT, padx=10)
+        self.T = tk.Text(frame, height=2, width=15,font=font)
+        self.T.pack(side=tk.LEFT, padx=10)
+    def getParameter(self):
+        return self.T
+
 def run(dataFrame):
     root = tk.Tk()
     root.title("Probability")
@@ -98,14 +163,23 @@ def run(dataFrame):
 
 
     framePmf = tk.Frame(root, bg="#84e9d9")
-    framePmf.pack(padx = 20)
+    framePmf.pack(padx = 20,pady=30)
     txtPmfN = pmfTextBoxN(framePmf, font)
     txtPmfP = pmfTextBoxP(framePmf, font)
     txtPmfX = pmfTextBoxX(framePmf, font)
-    labelPmf = tk.Label(framePmf, text="PMF = ", font=font + (16, "italic"), fg="#4b50b0", bg="#84e9d9")
+    labelPmf = tk.Label(framePmf, text="Binomial PMF = ", font=font + (16, "italic"), fg="#4b50b0", bg="#84e9d9")
     pmfBtn(framePmf, font,txtPmfN,txtPmfP,txtPmfX,labelPmf)
     labelPmf.pack(side=tk.LEFT, padx=10)
 
+
+    frameCdf = tk.Frame(root, bg="#84e9d9")
+    frameCdf.pack(padx = 20,pady=30)
+    txtCdfN = cdfTextBoxN(frameCdf, font)
+    txtCdfP = cdfTextBoxP(frameCdf, font)
+    txtCdfX = cdfTextBoxX(frameCdf, font)
+    labelCdf = tk.Label(frameCdf, text="Binomial CDF = ", font=font + (16, "italic"), fg="#4b50b0", bg="#84e9d9")
+    cdfBtn(frameCdf, font,txtCdfN,txtCdfP,txtCdfX,labelCdf)
+    labelCdf.pack(side=tk.LEFT, padx=10)
     # your code here
 
     root.mainloop()
