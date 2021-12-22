@@ -14,6 +14,9 @@ pmfValueX = 0
 cdfValueN = 0
 cdfValueP = 0
 cdfValueX = 0
+
+lambdaPoss = 0
+possionX = 0
 class title:
     def __init__(self, root, font):
         topFrame = tk.Frame(root)
@@ -146,6 +149,52 @@ class cdfTextBoxX:
     def getParameter(self):
         return self.T
 
+
+
+class possionBtn:
+    def __init__(self, frame, font,txtlambda,txtPossionX,labelpossion):
+        self.txtlambda = txtlambda
+        self.txtPossionX = txtPossionX
+        self.labelCdf = labelpossion
+        button = tk.Button(frame, text='poisson PMF', command=self.calculate, font=font + (20,), bg="#4b50b0",
+                           fg="#efefef", width=10)
+        button.pack(side=tk.LEFT, padx=10)
+
+    def calculate(self):
+        global lambdaPoss
+        lambdaPoss = self.txtlambda.getParameter().get('1.0', 'end')
+        possionX = self.txtPossionX.getParameter().get('1.0', 'end')
+        try:
+            lambdaPoss = float(lambdaPoss)
+            possionX = float(possionX)
+        except:
+            lambdaPoss = 0
+            possionX = 0
+            print("Hello")
+        print(lambdaPoss,possionX)
+        X = stats.poisson(lambdaPoss)  # Declare X to be a binomial random variable
+        self.labelCdf.config(text = "PMF = "+str(X.pmf(possionX)))
+
+
+
+class lambdaPossion:
+    def __init__(self, frame, font):
+        label = tk.Label(frame, text="lambda ", font=font + (16, "italic"), fg="#4b50b0", bg="#84e9d9")
+        label.pack(side=tk.LEFT, padx=10)
+        self.T = tk.Text(frame, height=2, width=15,font=font)
+        self.T.pack(side=tk.LEFT, padx=10)
+
+    def getParameter(self):
+        return self.T
+class xPossion:
+    def __init__(self, frame, font):
+        label = tk.Label(frame, text="X ", font=font + (16, "italic"), fg="#4b50b0", bg="#84e9d9")
+        label.pack(side=tk.LEFT, padx=10)
+        self.T = tk.Text(frame, height=2, width=15,font=font)
+        self.T.pack(side=tk.LEFT, padx=10)
+
+    def getParameter(self):
+        return self.T
 def run(dataFrame):
     root = tk.Tk()
     root.title("Probability")
@@ -180,6 +229,16 @@ def run(dataFrame):
     labelCdf = tk.Label(frameCdf, text="Binomial CDF = ", font=font + (16, "italic"), fg="#4b50b0", bg="#84e9d9")
     cdfBtn(frameCdf, font,txtCdfN,txtCdfP,txtCdfX,labelCdf)
     labelCdf.pack(side=tk.LEFT, padx=10)
+
+
+
+    framePossion = tk.Frame(root, bg="#84e9d9")
+    framePossion.pack(padx = 20,pady=30)
+    txtlambda = lambdaPossion(framePossion, font)
+    txtPossionX = xPossion(framePossion, font)
+    labelPossion = tk.Label(framePossion, text="Possion PMF = ", font=font + (16, "italic"), fg="#4b50b0", bg="#84e9d9")
+    possionBtn(framePossion, font,txtlambda,txtPossionX,labelPossion)
+    labelPossion.pack(side=tk.LEFT, padx=10)
     # your code here
 
     root.mainloop()
