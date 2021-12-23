@@ -6,6 +6,8 @@ from scipy.stats import norm
 import numpy as np
 import matplotlib.pyplot as plt
 
+geoValueX= 0
+geoValueP= 0
 
 pmfValueN = 0
 pmfValueP = 0
