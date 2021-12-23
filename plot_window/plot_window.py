@@ -5,6 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import statistics as stats
 from statistics import *
+from collections import Counter
 import pandas as pd
 from tkinter  import messagebox,Tk
 options = ['Bar Char', 'Histogram', 'Dot Digram',
@@ -95,10 +96,27 @@ class PieGraphBtn:
         # plt.pie(self.dataFrame[self.menu1.get()][1:500], frame=True)
         plt.get_current_fig_manager().canvas.set_window_title('Pie Chart')
         plt.title(self.menu1.get().capitalize())
+        
+        # from collections import Counter
+        # x = [10,30,45,10,15,15]
+        # y = Counter(x)
+        # values = list(y.values())
+        # keys = list(y.keys())
+        # length = len(values)
+        # values2 = [values[i]*keys[i] for i in range(length)]
+        # print(x)
+        # print(y)
+        # print(keys)
+        # print(values2)
+
         if(len(self.dataFrame)>500):
-            plt.pie(self.dataFrame[self.menu1.get()][1:500], frame=True)
+            y = Counter(self.dataFrame[self.menu1.get()][1:500])
+            plt.pie(list(y.values()), frame=True,labels = list(y.keys()), startangle=90,autopct='%1.1f%%')
         else:
-            plt.pie(self.dataFrame[self.menu1.get()], frame=True)
+            y = Counter(self.dataFrame[self.menu1.get()])
+            values = list(y.values())
+            labels = list(y.keys())
+            plt.pie(list(y.values()),labels = list(y.keys()), frame=True, startangle=90,autopct='%1.1f%%')
         plt.show()
         pass
     
