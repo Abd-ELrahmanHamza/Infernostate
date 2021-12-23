@@ -195,6 +195,57 @@ class xPossion:
 
     def getParameter(self):
         return self.T
+
+#Geometric Random Variable
+class geoBtn:
+    def __init__(self, frame, font,txtGeoP,txtGeoX,labelGeo):
+        self.txtGeoP=txtGeoP
+        self.txtGeoX=txtGeoX
+        self.labelGeo=labelGeo
+        button = tk.Button(frame, text='Geometric', command=self.calculate, font=font + (20,), bg="#4b50b0",
+                           fg="#efefef", width=10)
+        button.pack(side=tk.LEFT, padx=10)
+
+    def calculate(self):
+        global geoValueX
+        global geoValueP
+        global labelGeo
+        geoValueP = self.txtGeoP.getParameter().get('1.0', 'end')
+        geoValueX = self.txtGeoX.getParameter().get('1.0', 'end')
+        try:
+            geoValueP = float(geoValueP)
+            geoValueX = float(geoValueX)
+        except:
+            geoValueP = 0
+            geoValueX = 0
+            print("Hello")
+        # pmfValueP = int(pmfValueP)
+        # pmfValueP = int(pmfValueP)
+        print(geoValueP,geoValueX)
+        X = stats.geom(geoValueP)  # Declare X to be a binomial random variable
+        self.labelGeo.config(text = "Geo = "+str(X.pmf(geoValueX)))
+        print(X.pmf(geoValueX))
+
+#textbox for Geo Rv
+class GeoTextBoxX:
+    def __init__(self, frame, font):
+        label = tk.Label(frame, text="X", font=font + (16, "italic"), fg="#4b50b0", bg="#84e9d9")
+        label.pack(side=tk.LEFT, padx=10)
+        self.T = tk.Text(frame, height=2, width=15,font=font)
+        self.T.pack(side=tk.LEFT, padx=10)
+
+    def getParameter(self):
+        return self.T
+
+class GeoTextBoxP:
+    def __init__(self, frame, font):
+        label = tk.Label(frame, text="P", font=font + (16, "italic"), fg="#4b50b0", bg="#84e9d9")
+        label.pack(side=tk.LEFT, padx=10)
+        self.T = tk.Text(frame, height=2, width=15,font=font)
+        self.T.pack(side=tk.LEFT, padx=10)
+
+    def getParameter(self):
+        return self.T
 def run(dataFrame):
     root = tk.Tk()
     root.title("Probability")
@@ -239,6 +290,15 @@ def run(dataFrame):
     labelPossion = tk.Label(framePossion, text="Possion PMF = ", font=font + (16, "italic"), fg="#4b50b0", bg="#84e9d9")
     possionBtn(framePossion, font,txtlambda,txtPossionX,labelPossion)
     labelPossion.pack(side=tk.LEFT, padx=10)
+
+    #geo btn
+    frameGeometric = tk.Frame(root, bg="#84e9d9")
+    frameGeometric.pack(padx = 20,pady=30)
+    txtgeoP = GeoTextBoxP(frameGeometric, font)
+    txtgeoX = GeoTextBoxX(frameGeometric, font)
+    labelGeo = tk.Label(frameGeometric, text="Geometric PMF = ", font=font + (16, "italic"), fg="#4b50b0", bg="#84e9d9")
+    geoBtn(frameGeometric, font,txtgeoP,txtgeoX,labelGeo)
+    labelGeo.pack(side=tk.LEFT, padx=10)
     # your code here
 
     root.mainloop()
