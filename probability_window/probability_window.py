@@ -6,6 +6,11 @@ from scipy.stats import norm
 import numpy as np
 import matplotlib.pyplot as plt
 
+normValueSigma = 0
+normValueM = 0
+normValueX = 0
+
+
 geoValueX= 0
 geoValueP= 0
 
@@ -49,6 +54,10 @@ class pmfBtn:
             pmfValueP = float(pmfValueP)
             pmfValueX = float(pmfValueX)
         except:
+            tk.messagebox.showinfo(
+                title='Error!',
+                message="Invalid data please select valid data.. All values set to zero"
+            )
             pmfValueN = 0
             pmfValueP = 0
             pmfValueX = 0
@@ -112,6 +121,10 @@ class cdfBtn:
             cdfValueP = float(cdfValueP)
             cdfValueN = float(cdfValueN)
         except:
+            tk.messagebox.showinfo(
+                title='Error!',
+                message="Invalid data please select valid data.. All values set to zero"
+            )
             cdfValueN = 0
             cdfValueP = 0
             cdfValueX = 0
@@ -170,6 +183,10 @@ class possionBtn:
             lambdaPoss = float(lambdaPoss)
             possionX = float(possionX)
         except:
+            tk.messagebox.showinfo(
+                title='Error!',
+                message="Invalid data please select valid data.. All values set to zero"
+            )
             lambdaPoss = 0
             possionX = 0
             print("Hello")
@@ -218,6 +235,10 @@ class geoBtn:
             geoValueP = float(geoValueP)
             geoValueX = float(geoValueX)
         except:
+            tk.messagebox.showinfo(
+                title='Error!',
+                message="Invalid data please select valid data.. All values set to zero"
+            )
             geoValueP = 0
             geoValueX = 0
             print("Hello")
@@ -248,6 +269,80 @@ class GeoTextBoxP:
 
     def getParameter(self):
         return self.T
+
+
+# Normal dist
+class normalBtn:
+    def __init__(self, frame, font,txtNormalSigma,txtNormalM,txtNormalX,labelNormal):
+        self.txtNormalSigma=txtNormalSigma
+        self.txtNormalM=txtNormalM
+        self.txtNormalX=txtNormalX
+        self.labelNormal = labelNormal
+        button = tk.Button(frame, text='Normal', command=self.calculate, font=font + (20,), bg="#4b50b0",
+                           fg="#efefef", width=10)
+        button.pack(side=tk.LEFT, padx=10)
+
+    def calculate(self):
+        global normValueSigma
+        global normValueM
+        global normValueX
+        global labelNormal
+        normValueM = self.txtNormalM.getParameter().get('1.0', 'end')
+        normValueX = self.txtNormalX.getParameter().get('1.0', 'end')
+        normValueSigma = self.txtNormalSigma.getParameter().get('1.0', 'end')
+        try:
+            normValueM = float(normValueM)
+            normValueX = float(normValueX)
+            normValueSigma = float(normValueSigma)
+        except:
+            tk.messagebox.showinfo(
+                title='Error!',
+                message="Invalid data please select valid data.. All values set to zero"
+            )
+            normValueM = 0
+            normValueX = 0
+            normValueSigma = 0
+            print("Hello")
+        # pmfValueP = int(pmfValueP)
+        # pmfValueP = int(pmfValueP)
+        print(normValueM,normValueX,normValueSigma)
+        X = stats.norm(normValueM,normValueSigma)  # Declare X to be a Normal random variable
+        self.labelNormal.config(text = "Normal PDF = "+str(X.pdf(normValueX)))
+        print(X.pdf(normValueX))
+
+#textbox for Normal Dist
+class txtNormalX:
+    def __init__(self, frame, font):
+        label = tk.Label(frame, text="X", font=font + (16, "italic"), fg="#4b50b0", bg="#84e9d9")
+        label.pack(side=tk.LEFT, padx=10)
+        self.T = tk.Text(frame, height=2, width=15,font=font)
+        self.T.pack(side=tk.LEFT, padx=10)
+
+    def getParameter(self):
+        return self.T
+
+class txtNormalM:
+    def __init__(self, frame, font):
+        label = tk.Label(frame, text="Mean", font=font + (16, "italic"), fg="#4b50b0", bg="#84e9d9")
+        label.pack(side=tk.LEFT, padx=10)
+        self.T = tk.Text(frame, height=2, width=15,font=font)
+        self.T.pack(side=tk.LEFT, padx=10)
+
+    def getParameter(self):
+        return self.T
+
+class txtNormalSigma:
+    def __init__(self, frame, font):
+        label = tk.Label(frame, text="Standard Deviation", font=font + (16, "italic"), fg="#4b50b0", bg="#84e9d9")
+        label.pack(side=tk.LEFT, padx=10)
+        self.T = tk.Text(frame, height=2, width=15,font=font)
+        self.T.pack(side=tk.LEFT, padx=10)
+
+    def getParameter(self):
+        return self.T
+
+
+
 def run(dataFrame):
     root = tk.Tk()
     root.title("Probability")
@@ -301,6 +396,15 @@ def run(dataFrame):
     labelGeo = tk.Label(frameGeometric, text="Geometric PMF = ", font=font + (16, "italic"), fg="#4b50b0", bg="#84e9d9")
     geoBtn(frameGeometric, font,txtgeoP,txtgeoX,labelGeo)
     labelGeo.pack(side=tk.LEFT, padx=10)
-    # your code here
+
+    #normal btn
+    frameNormal = tk.Frame(root, bg="#84e9d9")
+    frameNormal.pack(padx = 20,pady=30)
+    txtNormalSigmaa = txtNormalSigma(frameNormal, font)
+    txtNormX = txtNormalX(frameNormal, font)
+    txtNormM = txtNormalM(frameNormal, font)
+    labelNormal = tk.Label(frameNormal, text="Normal PDF = ", font=font + (16, "italic"), fg="#4b50b0", bg="#84e9d9")
+    normalBtn(frameNormal, font,txtNormalSigmaa,txtNormM,txtNormX,labelNormal)
+    labelNormal.pack(side=tk.LEFT, padx=10)
 
     root.mainloop()
