@@ -28,7 +28,7 @@ class fileButton:
             filetypes=self.__filetypes)
 
         tk.messagebox.showinfo(
-            title='Selected File',
+            title='Warning',
             message=self.__filename if self.__filename != "" else "No file selected"
         )
         self.read_file()
