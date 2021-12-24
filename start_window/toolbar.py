@@ -25,7 +25,7 @@ class help_subMenu:
         helpSubMenu.add_separator()
 
     def help_helpCommand(self):
-        webbrowser.open('https://github.com/Abd-ELrahmanHamza/Probability-and-statistics-project')
+        webbrowser.open('https://github.com/Abd-ELrahmanHamza/Infernostate')
 
 
 class toolbar:
