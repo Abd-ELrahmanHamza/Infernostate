@@ -61,13 +61,9 @@ class pmfBtn:
             pmfValueN = 0
             pmfValueP = 0
             pmfValueX = 0
-            print("Hello")
-        # pmfValueP = int(pmfValueP)
-        # pmfValueP = int(pmfValueP)
-        print(pmfValueN,pmfValueP,pmfValueX)
+
         X = stats.binom(pmfValueN, pmfValueP)  # Declare X to be a binomial random variable
         self.labelPmf.config(text = "PMF = "+str(X.pmf(pmfValueX)))
-        print(X.pmf(pmfValueX))
 
 
 
@@ -128,13 +124,9 @@ class cdfBtn:
             cdfValueN = 0
             cdfValueP = 0
             cdfValueX = 0
-            print("Hello")
-        # pmfValueP = int(pmfValueP)
-        # pmfValueP = int(pmfValueP)
-        print(cdfValueN,cdfValueP,cdfValueX)
+
         X = stats.binom(cdfValueN, cdfValueP)  # Declare X to be a binomial random variable
         self.labelCdf.config(text = "CDF = "+str(X.cdf(cdfValueX)))
-        # print(X.cdf(pmfValueX))
 
 
 
@@ -189,8 +181,7 @@ class possionBtn:
             )
             lambdaPoss = 0
             possionX = 0
-            print("Hello")
-        print(lambdaPoss,possionX)
+            # print("Hello")
         X = stats.poisson(lambdaPoss)  # Declare X to be a binomial random variable
         self.labelCdf.config(text = "PMF = "+str(X.pmf(possionX)))
 
@@ -241,13 +232,9 @@ class geoBtn:
             )
             geoValueP = 0
             geoValueX = 0
-            print("Hello")
-        # pmfValueP = int(pmfValueP)
-        # pmfValueP = int(pmfValueP)
-        print(geoValueP,geoValueX)
+            # print("Hello")
         X = stats.geom(geoValueP)  # Declare X to be a binomial random variable
         self.labelGeo.config(text = "Geo = "+str(X.pmf(geoValueX)))
-        print(X.pmf(geoValueX))
 
 #textbox for Geo Rv
 class GeoTextBoxX:
@@ -302,13 +289,8 @@ class normalBtn:
             normValueM = 0
             normValueX = 0
             normValueSigma = 0
-            print("Hello")
-        # pmfValueP = int(pmfValueP)
-        # pmfValueP = int(pmfValueP)
-        print(normValueM,normValueX,normValueSigma)
         X = stats.norm(normValueM,normValueSigma)  # Declare X to be a Normal random variable
         self.labelNormal.config(text = "Normal PDF = "+str(X.pdf(normValueX)))
-        print(X.pdf(normValueX))
 
 #textbox for Normal Dist
 class txtNormalX:

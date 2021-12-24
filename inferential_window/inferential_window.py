@@ -11,5 +11,5 @@ def run(dataFrame):
     # your code here
     lbl = tk.Label(root,text = "inferential window")
     lbl.pack()
-    print(dataFrame)
+    # print(dataFrame)
     root.mainloop()

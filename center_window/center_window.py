@@ -32,7 +32,6 @@ def run(dataFrame):
     # your code here
     
 
-    # print(dataFrame)
     df=dataFrame
     lists=df.columns
     
@@ -109,9 +108,7 @@ def run(dataFrame):
     button2 = tk.Button(frameBtns2, text='Calculate Median', command=buttonmedianfunc, font=font + (20,), bg="#4b50b0",fg="#efefef",width = 30)
     button2.pack(side = tk.RIGHT)
 
-    # b2=Button(root,text="press to calc median",command=buttonmedianfunc)
-    # b2.config(font=("Helvetica",15,"bold"))
-    # b2.place(x=360,y=270)
+
     frameBtns3 = tk.Frame(root, bg="#84e9d9")
     frameBtns3.pack(pady=20)
     l3=Label(frameBtns3,text='', bg="#4b50b0",fg="#efefef",width="20",font=font + (20,))
@@ -119,9 +116,7 @@ def run(dataFrame):
     button3 = tk.Button(frameBtns3, text='Calculate Mean', command=buttonmeanfunc, font=font + (20,), bg="#4b50b0",fg="#efefef",width = 30)
     button3.pack(side = tk.RIGHT)
 
-    # b3=Button(root,text="press to calc mean",command=buttonmeanfunc)
-    # b3.config(font=("IHelvetica",15,"bold"))
-    # b3.place(x=360,y=390)
+
 
     frameBtns4 = tk.Frame(root, bg="#84e9d9")
     frameBtns4.pack(pady=20)
@@ -129,9 +124,7 @@ def run(dataFrame):
     l4.pack(side = tk.RIGHT,padx=20)
     button4 = tk.Button(frameBtns4, text='Calculate Variance', command=buttonvariancefunc, font=font + (20,), bg="#4b50b0",fg="#efefef",width = 30)
     button4.pack(side = tk.RIGHT)
-    # b4=Button(root,text="press to calc variance",command=buttonvariancefunc)
-    # b4.config(font=("Helvetica",15,"bold"))
-    # b4.place(x=360,y=510)
+
 
     frameBtns5 = tk.Frame(root, bg="#84e9d9")
     frameBtns5.pack(pady=20)
@@ -140,7 +133,5 @@ def run(dataFrame):
     button5 = tk.Button(frameBtns5, text='Calculate Standard Deviation', command=buttonpvariancefunc, font=font + (20,), bg="#4b50b0",fg="#efefef",width = 30)
     button5.pack(side = tk.RIGHT)
 
-    # b5=Button(root,text="press to calc Stand. Dev.",command=buttonpvariancefunc)
-    # b5.config(font=("Helvetica",15,"bold"))
-    # b5.place(x=360,y=630)
+
     root.mainloop()
