@@ -1,4 +1,5 @@
 import tkinter as tk
+import webbrowser
 
 
 class file_subMenu:
@@ -24,7 +25,7 @@ class help_subMenu:
         helpSubMenu.add_separator()
 
     def help_helpCommand(self):
-        print("help -> help")
+        webbrowser.open('https://github.com/Abd-ELrahmanHamza/Infernostate')
 
 
 class toolbar:
