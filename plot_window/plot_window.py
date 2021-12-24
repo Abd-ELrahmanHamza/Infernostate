@@ -82,6 +82,12 @@ class BoxPlotGraphBtn:
             message="No Column selected"
             )
         else:
+            if(self.dataFrame[self.menu1.get()].dtypes==object):
+                messagebox.showinfo(
+                title='Error!',
+                message= "Invalid data please select valid data"
+                )  
+                return
             plt.boxplot(self.dataFrame[self.menu1.get()])
             plt.get_current_fig_manager().canvas.set_window_title('Box Plot')
             plt.title(self.menu1.get().capitalize())
@@ -151,6 +157,13 @@ class violinPlotnBtn:
             message="No Column selected"
             )
         else:
+            # print(self.dataFrame[self.menu1.get()].dtypes)
+            if(self.dataFrame[self.menu1.get()].dtypes==object):
+                messagebox.showinfo(
+                title='Error!',
+                message= "Invalid data please select valid data"
+                )  
+                return
             plt.close("all")
             plt.violinplot(self.dataFrame[self.menu1.get()])
             plt.get_current_fig_manager().canvas.set_window_title('Violin Plot')
