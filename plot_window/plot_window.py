@@ -91,32 +91,40 @@ class PieGraphBtn:
 
     def plot(self):
         plt.close("all")
-        colors = plt.get_cmap('Blues')(np.linspace(0.2, 0.7))
+        # colors = plt.get_cmap('Blues')(np.linspace(0.2, 0.7))
         # self.dataFrame=self.dataFrame[self.menu1.get()].tolist()
         # plt.pie(self.dataFrame[self.menu1.get()][1:500], frame=True)
-        plt.get_current_fig_manager().canvas.set_window_title('Pie Chart')
-        plt.title(self.menu1.get().capitalize())
+        # plt.get_current_fig_manager().canvas.set_window_title('Pie Chart')
+        # plt.title(self.menu1.get().capitalize())
         
-        # from collections import Counter
-        # x = [10,30,45,10,15,15]
-        # y = Counter(x)
-        # values = list(y.values())
-        # keys = list(y.keys())
-        # length = len(values)
-        # values2 = [values[i]*keys[i] for i in range(length)]
-        # print(x)
-        # print(y)
-        # print(keys)
-        # print(values2)
-
         if(len(self.dataFrame)>500):
             y = Counter(self.dataFrame[self.menu1.get()][1:500])
-            plt.pie(list(y.values()), frame=True,labels = list(y.keys()), startangle=90,autopct='%1.1f%%')
         else:
             y = Counter(self.dataFrame[self.menu1.get()])
-            values = list(y.values())
-            labels = list(y.keys())
-            plt.pie(list(y.values()),labels = list(y.keys()), frame=True, startangle=90,autopct='%1.1f%%')
+
+        sizes = list(y.values())
+        labels = list(y.keys())
+        
+        fig1, ax1 = plt.subplots(figsize=(6, 5))
+        fig1.subplots_adjust(0.3,0,1,1)
+
+        theme = plt.get_cmap('twilight')
+        ax1.set_prop_cycle("color", [theme(1. * i / len(sizes)) for i in range(len(sizes))])
+
+        _, _ = ax1.pie(sizes, startangle=90)
+
+        ax1.axis('equal')
+
+        total = sum(sizes)
+        plt.legend(
+            loc='upper left',
+            labels=['%s, %1.1f%%' % (
+                l, (float(s) / total) * 100) for l, s in zip(labels, sizes)],
+            prop={'size': 11},
+            bbox_to_anchor=(0.0, 1),
+            bbox_transform=fig1.transFigure
+        )
+        plt.get_current_fig_manager().set_window_title('Pie Chart')
         plt.show()
         pass
     
