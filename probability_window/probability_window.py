@@ -1,10 +1,6 @@
 import tkinter as tk
-from tkinter import *
-from tkinter import ttk
 from scipy import stats
-from scipy.stats import norm
-import numpy as np
-import matplotlib.pyplot as plt
+
 
 normValueSigma = 0
 normValueM = 0

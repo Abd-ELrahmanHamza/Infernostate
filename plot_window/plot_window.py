@@ -1,12 +1,8 @@
 import tkinter as tk
 from tkinter import *
 from tkinter import ttk
-import numpy as np
 import matplotlib.pyplot as plt
-import statistics as stats
-from statistics import *
 from collections import Counter
-import pandas as pd
 from tkinter  import messagebox,Tk
 options = ['Bar Char', 'Histogram', 'Dot Digram',
            'Box plot', 'Stem-and-leaf Plot','viloent']

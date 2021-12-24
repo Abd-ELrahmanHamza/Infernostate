@@ -1,11 +1,7 @@
-from io import BufferedRandom
 import tkinter as tk
 from tkinter import *
-import numpy as np
 import statistics as stats
-from statistics import *
 import pandas as pd
-from tkinter import ttk
 from tkinter import messagebox
 
 root =tk.Tk()
