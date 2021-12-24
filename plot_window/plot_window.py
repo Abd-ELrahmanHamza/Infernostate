@@ -29,14 +29,20 @@ class HistogramBtn:
 
     def plot(self):
         plt.close("all")
-        plt.hist(self.dataFrame[self.menu1.get()],color = 'maroon')
-        # var1=plt.figure(1)
-        # var1.canvas.set_window_title('Histogram')
-        plt.get_current_fig_manager().canvas.set_window_title('Histogram')
-        plt.title(self.menu1.get().capitalize())
-        plt.xlabel('Values')
-        plt.ylabel('Frequency')
-        plt.show()
+        if(self.menu1.get()=='Select the Column'):
+            tk.messagebox.showinfo(
+            title='Warning',
+            message="No Column selected"
+            )
+        else:
+            plt.hist(self.dataFrame[self.menu1.get()],color = 'maroon')
+            # var1=plt.figure(1)
+            # var1.canvas.set_window_title('Histogram')
+            plt.get_current_fig_manager().canvas.set_window_title('Histogram')
+            plt.title(self.menu1.get().capitalize())
+            plt.xlabel('Values')
+            plt.ylabel('Frequency')
+            plt.show()
         pass
 
 
@@ -50,14 +56,20 @@ class BarGraphBtn:
 
     def plot(self):
         plt.close("all")
-        plt.hist(self.dataFrame[self.menu1.get()],color = 'maroon',rwidth=0.5)
-        # var2=plt.figure(1)
-        # var2.canvas.set_window_title('Bar Chart')
-        plt.get_current_fig_manager().canvas.set_window_title('Bar Chart')
-        plt.title(self.menu1.get().capitalize())
-        plt.xlabel('Values')
-        plt.ylabel('Frequency')
-        plt.show()
+        if(self.menu1.get()=='Select the Column'):
+            tk.messagebox.showinfo(
+            title='Warning',
+            message="No Column selected"
+            )
+        else:
+            plt.hist(self.dataFrame[self.menu1.get()],color = 'maroon',rwidth=0.5)
+            # var2=plt.figure(1)
+            # var2.canvas.set_window_title('Bar Chart')
+            plt.get_current_fig_manager().canvas.set_window_title('Bar Chart')
+            plt.title(self.menu1.get().capitalize())
+            plt.xlabel('Values')
+            plt.ylabel('Frequency')
+            plt.show()
         pass
 
 
@@ -72,12 +84,18 @@ class BoxPlotGraphBtn:
 
     def plot(self):
         plt.close("all")
-        plt.boxplot(self.dataFrame[self.menu1.get()])
-        # var3=plt.figure(1)
-        # var3.canvas.set_window_title('Box Plot')
-        plt.get_current_fig_manager().canvas.set_window_title('Box Plot')
-        plt.title(self.menu1.get().capitalize())
-        plt.show()
+        if(self.menu1.get()=='Select the Column'):
+            tk.messagebox.showinfo(
+            title='Warning',
+            message="No Column selected"
+            )
+        else:
+            plt.boxplot(self.dataFrame[self.menu1.get()])
+            # var3=plt.figure(1)
+            # var3.canvas.set_window_title('Box Plot')
+            plt.get_current_fig_manager().canvas.set_window_title('Box Plot')
+            plt.title(self.menu1.get().capitalize())
+            plt.show()
         pass
 
 
@@ -96,36 +114,41 @@ class PieGraphBtn:
         # plt.pie(self.dataFrame[self.menu1.get()][1:500], frame=True)
         # plt.get_current_fig_manager().canvas.set_window_title('Pie Chart')
         # plt.title(self.menu1.get().capitalize())
-        
-        if(len(self.dataFrame)>500):
-            y = Counter(self.dataFrame[self.menu1.get()][1:500])
+        if(self.menu1.get()=='Select the Column'):
+            tk.messagebox.showinfo(
+            title='Warning',
+            message="No Column selected"
+            )
         else:
-            y = Counter(self.dataFrame[self.menu1.get()])
+            if(len(self.dataFrame)>500):
+                y = Counter(self.dataFrame[self.menu1.get()][1:500])
+            else:
+                y = Counter(self.dataFrame[self.menu1.get()])
 
-        sizes = list(y.values())
-        labels = list(y.keys())
-        
-        fig1, ax1 = plt.subplots(figsize=(6, 5))
-        fig1.subplots_adjust(0.3,0,1,1)
+            sizes = list(y.values())
+            labels = list(y.keys())
+            
+            fig1, ax1 = plt.subplots(figsize=(6, 5))
+            fig1.subplots_adjust(0.3,0,1,1)
 
-        theme = plt.get_cmap('twilight')
-        ax1.set_prop_cycle("color", [theme(1. * i / len(sizes)) for i in range(len(sizes))])
+            theme = plt.get_cmap('twilight')
+            ax1.set_prop_cycle("color", [theme(1. * i / len(sizes)) for i in range(len(sizes))])
 
-        _, _ = ax1.pie(sizes, startangle=90)
+            _, _ = ax1.pie(sizes, startangle=90)
 
-        ax1.axis('equal')
+            ax1.axis('equal')
 
-        total = sum(sizes)
-        plt.legend(
-            loc='upper left',
-            labels=['%s, %1.1f%%' % (
-                l, (float(s) / total) * 100) for l, s in zip(labels, sizes)],
-            prop={'size': 11},
-            bbox_to_anchor=(0.0, 1),
-            bbox_transform=fig1.transFigure
-        )
-        plt.get_current_fig_manager().set_window_title('Pie Chart')
-        plt.show()
+            total = sum(sizes)
+            plt.legend(
+                loc='upper left',
+                labels=['%s, %1.1f%%' % (
+                    l, (float(s) / total) * 100) for l, s in zip(labels, sizes)],
+                prop={'size': 11},
+                bbox_to_anchor=(0.0, 1),
+                bbox_transform=fig1.transFigure
+            )
+            plt.get_current_fig_manager().set_window_title('Pie Chart')
+            plt.show()
         pass
     
 class violinPlotnBtn:
@@ -137,11 +160,17 @@ class violinPlotnBtn:
         button.pack(side=tk.LEFT,padx = 10,pady = 300)
 
     def plot(self):
-        plt.close("all")
-        plt.violinplot(self.dataFrame[self.menu1.get()])
-        plt.get_current_fig_manager().canvas.set_window_title('Violin Plot')
-        plt.title(self.menu1.get().capitalize())
-        plt.show()
+        if(self.menu1.get()=='Select the Column'):
+            tk.messagebox.showinfo(
+            title='Warning',
+            message="No Column selected"
+            )
+        else:
+            plt.close("all")
+            plt.violinplot(self.dataFrame[self.menu1.get()])
+            plt.get_current_fig_manager().canvas.set_window_title('Violin Plot')
+            plt.title(self.menu1.get().capitalize())
+            plt.show()
         pass
 
 
