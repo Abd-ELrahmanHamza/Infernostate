@@ -40,7 +40,7 @@ def run(dataFrame):
     opts=StringVar(root)
     opts.set("Select the Column")
     lists = lists.tolist()
-    men=ttk.Combobox(frameOptions,width=30, justify='center', height=len(lists),textvariable=opts,values=lists ,font=font+(16,))
+    men=ttk.Combobox(frameOptions,width=30, justify='center', height=len(lists),textvariable=opts,values=lists ,font=font+(16,),state = "readonly")
     men.option_add('*TCombobox*Listbox.Justify', 'center')
     men.pack()
 
