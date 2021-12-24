@@ -27,10 +27,16 @@ class fileButton:
             initialdir='/',
             filetypes=self.__filetypes)
 
-        tk.messagebox.showinfo(
+        if self.__filename == "":
+            tk.messagebox.showinfo(
             title='Warning',
-            message=self.__filename if self.__filename != "" else "No file selected"
-        )
+            message="No file selected"
+            )
+        else:
+            tk.messagebox.showinfo(
+                title='File Selected successfully',
+                message=self.__filename
+            )
         self.read_file()
 
     def read_file(self):
