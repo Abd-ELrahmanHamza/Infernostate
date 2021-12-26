@@ -85,7 +85,7 @@ class BoxPlotGraphBtn:
             if(self.dataFrame[self.menu1.get()].dtypes==object):
                 messagebox.showinfo(
                 title='Error!',
-                message= "Invalid data please select valid data"
+                message= "Selected data contains strings, This plot needs only numbers"
                 )  
                 return
             plt.boxplot(self.dataFrame[self.menu1.get()])
@@ -161,7 +161,7 @@ class violinPlotnBtn:
             if(self.dataFrame[self.menu1.get()].dtypes==object):
                 messagebox.showinfo(
                 title='Error!',
-                message= "Invalid data please select valid data"
+                message= "Selected data contains strings, This plot needs only numbers"
                 )  
                 return
             plt.close("all")

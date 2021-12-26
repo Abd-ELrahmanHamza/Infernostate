@@ -45,17 +45,18 @@ def run(dataFrame):
     men.pack()
 
 
-    def select(men):
-        data=opts.get()
-        if(df[opts.get()].dtypes==object):
-            messagebox.showinfo(
-            title='Error!',
-            message= "Invalid data please select valid data"
-            )  
-            return
-        return data
-    data=select
+    # def select(men):
+    #     data=opts.get()
+    #     if(df[opts.get()].dtypes==object):
+    #         messagebox.showinfo(
+    #         title='Error!',
+    #         message= "Selected data contains strings, This method needs only numbers"
+    #         )  
+    #         return
+    #     return data
+    
     def buttonmodefunc():
+        data=opts.get()
         if(opts.get() == 'Select the Column'):
             l1.config(text = 'Select a Column')
         else:
@@ -64,32 +65,60 @@ def run(dataFrame):
     
         
     def buttonmedianfunc():
+        data=opts.get()
         if(opts.get() == 'Select the Column'):
             l2.config(text = 'Select a Column')
         else:
-            c=stats.median(df[data])
-            l2.config(text = c)
+            if(df[opts.get()].dtypes==object):
+                messagebox.showinfo(
+                title='Error!',
+                message= "Selected data contains strings, Median needs only numbers"
+                )  
+            else:
+                c=stats.median(df[data])
+                l2.config(text = c)
 
     def buttonmeanfunc():
+        data=opts.get()
         if(opts.get() == 'Select the Column'):
             l3.config(text = 'Select a Column')
         else:
-            c=stats.mean(df[data])
-            l3.config(text = c)
+            if(df[opts.get()].dtypes==object):
+                messagebox.showinfo(
+                title='Error!',
+                message= "Selected data contains strings, Mean needs only numbers"
+                )  
+            else:
+                c=stats.mean(df[data])
+                l3.config(text = c)
 
     def buttonvariancefunc():
+        data=opts.get()
         if(opts.get() == 'Select the Column'):
             l4.config(text = 'Select a Column')
         else:
-            c=stats.variance(df[data])
-            l4.config(text = c)
+            if(df[opts.get()].dtypes==object):
+                messagebox.showinfo(
+                title='Error!',
+                message= "Selected data contains strings, Variance needs only numbers"
+                )  
+            else:
+                c=stats.variance(df[data])
+                l4.config(text = c)
 
     def buttonpvariancefunc():
+        data=opts.get()
         if(opts.get() == 'Select the Column'):
             l5.config(text = 'Select a Column')
         else:
-            c=stats.stdev(df[data])
-            l5.config(text = c) 
+            if(df[opts.get()].dtypes==object):
+                messagebox.showinfo(
+                title='Error!',
+                message= "Selected data contains strings, Standard Deviation needs only numbers"
+                )  
+            else:
+                c=stats.stdev(df[data])
+                l5.config(text = c) 
 
 
     frameBtns1 = tk.Frame(root, bg="#84e9d9")
