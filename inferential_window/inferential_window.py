@@ -77,7 +77,7 @@ class CLTNumSamples:
         return self.T
 def run(dataFrame):
     root = tk.Tk()
-    root.title("Probability")
+    root.title("Inferential")
     root.config(bg="#84e9d9")
     width = root.winfo_screenwidth()
     height = root.winfo_screenheight()
