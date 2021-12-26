@@ -70,6 +70,7 @@ def run(dataFrame):
             l2.config(text = 'Select a Column')
         else:
             if(df[opts.get()].dtypes==object):
+                l2.config(text = 'Select a valid column')
                 messagebox.showinfo(
                 title='Error!',
                 message= "Selected data contains strings, Median needs only numbers"
@@ -84,6 +85,7 @@ def run(dataFrame):
             l3.config(text = 'Select a Column')
         else:
             if(df[opts.get()].dtypes==object):
+                l3.config(text = 'Select a valid column')
                 messagebox.showinfo(
                 title='Error!',
                 message= "Selected data contains strings, Mean needs only numbers"
@@ -98,6 +100,7 @@ def run(dataFrame):
             l4.config(text = 'Select a Column')
         else:
             if(df[opts.get()].dtypes==object):
+                l4.config(text = 'Select a valid column')
                 messagebox.showinfo(
                 title='Error!',
                 message= "Selected data contains strings, Variance needs only numbers"
@@ -112,6 +115,7 @@ def run(dataFrame):
             l5.config(text = 'Select a Column')
         else:
             if(df[opts.get()].dtypes==object):
+                l5.config(text = 'Select a valid column')
                 messagebox.showinfo(
                 title='Error!',
                 message= "Selected data contains strings, Standard Deviation needs only numbers"
