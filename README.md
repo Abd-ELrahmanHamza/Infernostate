@@ -1,7 +1,7 @@
-<div align="center">
+<div align="center"  >
 <a href="https://github.com/Abd-ELrahmanHamza/Infernostate" rel="noopener">
 
-<img  src="Images/infernostate.png"></a>
+<img  src="Images/infernostate.png" width="100%;" ></a>
 
 </div>
 
