@@ -7,7 +7,6 @@
 [![GitHub license](https://img.shields.io/github/license/Abd-ELrahmanHamza/Infernostate)](https://github.com/Abd-ELrahmanHamza/Infernostate/blob/master/LICENSE)
 [![GitHub forks](https://img.shields.io/github/forks/Abd-ELrahmanHamza/Infernostate)](https://github.com/Abd-ELrahmanHamza/Infernostate/network)
 [![GitHub stars](https://img.shields.io/github/stars/Abd-ELrahmanHamza/Infernostate)](https://github.com/Abd-ELrahmanHamza/Infernostate/stargazers)
-
 [![GitHub Language](https://img.shields.io/github/languages/top/Abd-ELrahmanHamza/Infernostate)](https://github.com/Abd-ELrahmanHamza/Infernostate)
 
 </div>
