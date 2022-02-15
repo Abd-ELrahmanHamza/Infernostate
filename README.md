@@ -1,5 +1,16 @@
 # Infernostate
 
+<div align="center">
+
+[![GitHub contributors](https://img.shields.io/github/contributors/Abd-ELrahmanHamza/Infernostate)](https://github.com/Abd-ELrahmanHamza/Infernostate/contributors)
+[![GitHub issues](https://img.shields.io/github/issues/Abd-ELrahmanHamza/Infernostate)](https://github.com/Abd-ELrahmanHamza/Infernostate/issues)
+[![GitHub forks](https://img.shields.io/github/forks/Abd-ELrahmanHamza/Infernostate)](https://github.com/Abd-ELrahmanHamza/Infernostate/network)
+[![GitHub stars](https://img.shields.io/github/stars/Abd-ELrahmanHamza/Infernostate)](https://github.com/Abd-ELrahmanHamza/Infernostate/stargazers)
+[![GitHub license](https://img.shields.io/github/license/Abd-ELrahmanHamza/Infernostate)](https://github.com/Abd-ELrahmanHamza/Infernostate/blob/master/LICENSE)
+[![GitHub Language](https://img.shields.io/github/languages/count/Abd-ELrahmanHamza/Infernostate)](https://img.shields.io/github/languages/count/Abd-ELrahmanHamza/Infernostate)
+
+</div>
+
 ## Table of contents
 
 - [About the project](#about-the-project)
